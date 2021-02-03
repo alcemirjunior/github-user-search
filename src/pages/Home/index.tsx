@@ -16,7 +16,7 @@ const Home = () => (
             Este design foi adaptado a partir de Ant Design System for Figma, de<br/>Mateusz Wierzbicki:<a href="antforfigma@gmail.com">antforfigma@gmail.com</a>
         </p>
        
-       <Link to="/users" className="btn">
+       <Link to="/search" className="btn">
            <ButtonIcon text="Começar"/>
        </Link>
         
