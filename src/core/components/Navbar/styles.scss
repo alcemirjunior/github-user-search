@@ -1,0 +1,18 @@
+.main-navbar {
+    height: 62px;
+    background: #1890FF;
+    display: flex;
+    align-items: center;
+    font-family: 'Roboto';
+}
+
+.nav-text {
+    color: #fff;
+    font-size: 24px;
+    line-height: 32px;
+    padding-left: 40px;
+    &:hover{
+        text-decoration: none;
+        color: unset;
+    }
+}
