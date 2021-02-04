@@ -1,30 +1,62 @@
 import ButtonIcon from 'core/components/ButtonIcon'
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
+import axios from 'axios';
 import './styles.scss'
+import { Usuario } from 'core/types/Usuario';
+import { Link } from 'react-router-dom';
+
+type FormState = {
+    name: string;
+}
 
 const SearchCard = () => {
 
-    
+    const [formData, setFormData] = useState<FormState>({
+        name: ''
+    });
 
+    console.log(formData.name);
 
+    const handleOnChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const name = event.target.name;
+        const value = event.target.value;
+
+        setFormData(data => ({ ...data, [name]: value }));
+    }
+
+    const [userResponse, setUserResponse] = useState<Usuario>();
+
+    console.log(userResponse);
+
+    const handleSubimit = (event: React.FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
+
+        const BASE_URL = 'http://localhost:3000/'
+
+        axios(`${BASE_URL}${formData.name}`)
+        .then(response => setUserResponse(response.data));
+        
+    }
 
     return (
-        <div className="search-card-container">
+        <div className="search-container">
             <div className="search-card-content">
                 <h1 className="search-title">
                     Encontre um perfil no Github
                 </h1>
 
-                <form>
+                <form onSubmit={handleSubimit}>
                     <input
+                        value={formData.name}
                         name="name"
                         type="text"
                         className="form-control"
-                        placeholder="   Usuário Github"
+                        onChange={handleOnChange}
+                        placeholder="Usuário Github"
                     />
+                    <ButtonIcon text="Encontrar" />
                 </form>
-
-                <ButtonIcon text="Encontrar" />
+                 
             </div>
         </div>
     );

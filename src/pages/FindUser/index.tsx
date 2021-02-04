@@ -4,12 +4,7 @@ import './styles.scss'
 
 const FindUser = () => (
     <div className="search-page">
-        <div className="searchcard">
         <SearchCard/>
-        </div>
-        <div>
-            <h1>loader / resultado da busca</h1>
-        </div>
     </div>
 );
 
