@@ -1,9 +1,9 @@
 import ButtonIcon from 'core/components/ButtonIcon'
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import axios from 'axios';
 import './styles.scss'
 import { Usuario } from 'core/types/Usuario';
-import { Link } from 'react-router-dom';
+import UserCard from '../UserCard';
 
 type FormState = {
     name: string;
@@ -34,30 +34,36 @@ const SearchCard = () => {
         const BASE_URL = 'http://localhost:3000/'
 
         axios(`${BASE_URL}${formData.name}`)
-        .then(response => setUserResponse(response.data));
-        
+            .then(response => setUserResponse(response.data));
+
     }
 
     return (
-        <div className="search-container">
-            <div className="search-card-content">
-                <h1 className="search-title">
-                    Encontre um perfil no Github
+        <div>
+            <div className="search-container">
+                <div className="search-card-content">
+                    <h1 className="search-title">
+                        Encontre um perfil no Github
                 </h1>
 
-                <form onSubmit={handleSubimit}>
-                    <input
-                        value={formData.name}
-                        name="name"
-                        type="text"
-                        className="form-control"
-                        onChange={handleOnChange}
-                        placeholder="Usuário Github"
-                    />
-                    <ButtonIcon text="Encontrar" />
-                </form>
-                 
+                    <form onSubmit={handleSubimit}>
+                        <input
+                            value={formData.name}
+                            name="name"
+                            type="text"
+                            className="form-control"
+                            onChange={handleOnChange}
+                            placeholder="Usuário Github"
+                        />
+                        <ButtonIcon text="Encontrar" />
+                    </form>
+
+                </div>
             </div>
+            <div>
+                <UserCard />
+            </div>
+
         </div>
     );
 }
