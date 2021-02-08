@@ -2,8 +2,7 @@ import ButtonIcon from 'core/components/ButtonIcon'
 import React, { useState } from 'react'
 import axios from 'axios';
 import './styles.scss'
-import { Usuario } from 'core/types/Usuario';
-import UserCard from '../UserCard';
+import { User } from 'core/types/Users';
 
 type FormState = {
     name: string;
@@ -24,7 +23,7 @@ const SearchCard = () => {
         setFormData(data => ({ ...data, [name]: value }));
     }
 
-    const [userResponse, setUserResponse] = useState<Usuario>();
+    const [userResponse, setUserResponse] = useState<User>();
 
     console.log(userResponse);
 
@@ -35,7 +34,6 @@ const SearchCard = () => {
 
         axios(`${BASE_URL}${formData.name}`)
             .then(response => setUserResponse(response.data));
-
     }
 
     return (
@@ -61,7 +59,7 @@ const SearchCard = () => {
                 </div>
             </div>
             <div>
-                <UserCard />
+                <h1>UserCard</h1>    
             </div>
 
         </div>
