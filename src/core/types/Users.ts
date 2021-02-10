@@ -1,10 +1,9 @@
-
 export type User = {
     avatar_url: string;
     bio: string;
     blog: string;
     company: string;
-    created_at: Date;
+    created_at: string;
     email: string;
     events_url: string;
     followers: number;
@@ -30,6 +29,6 @@ export type User = {
     subscriptions_url: string;
     twitter_username: string;
     type: string;
-    updated_at: Date;
+    updated_at: string;
     url: string;
 }

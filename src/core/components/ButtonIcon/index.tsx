@@ -6,13 +6,13 @@ type Props = {
 }
 
 const ButtonIcon = ({ text }: Props) => (
-    <div>
-        <button className="btn">
-            <h5 className="btn-text">
-                {text}
-            </h5>
-        </button>
-    </div>
+
+    <button className="btn">
+        <h5 className="btn-text">
+            {text}
+        </h5>
+    </button>
+
 );
 
 export default ButtonIcon;

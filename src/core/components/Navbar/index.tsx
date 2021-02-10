@@ -5,10 +5,9 @@ import 'app.scss'
 
 const Navbar = () => (
     <nav className="main-navbar">
-
-        <Link to="/" className="nav-text">
-            Bootcamp DevSuperior
-        </Link>
+        <a href="/" className="nav-text">
+        Bootcamp DevSuperior
+        </a>
 
     </nav>
 )

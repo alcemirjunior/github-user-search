@@ -3,6 +3,9 @@ import React, { useState } from 'react'
 import axios from 'axios';
 import './styles.scss'
 import { User } from 'core/types/Users';
+import UserCard from '../UserCard';
+import ImageLoader from '../Loaders/ImageLoader';
+import ProductInfoLoader from '../Loaders/ProductInfoLoader';
 
 type FormState = {
     name: string;
@@ -10,8 +13,10 @@ type FormState = {
 
 const SearchCard = () => {
 
+    const [isLoading, setIsLoading] = useState(false);
+    const [finishLoading, setFinishLoading] = useState(false);
     const [formData, setFormData] = useState<FormState>({
-        name: ''
+        name: '',
     });
 
     console.log(formData.name);
@@ -23,7 +28,40 @@ const SearchCard = () => {
         setFormData(data => ({ ...data, [name]: value }));
     }
 
-    const [userResponse, setUserResponse] = useState<User>();
+    const [userResponse, setUserResponse] = useState<User>({
+        avatar_url: '',
+        bio: '',
+        blog: '',
+        company: '',
+        created_at: '',
+        email: '',
+        events_url: '',
+        followers: 0,
+        followers_url: '',
+        following: 0,
+        following_url: '',
+        gists_url: '',
+        gravatar_id: '',
+        hireable: false,
+        html_url: '',
+        id: 0,
+        location: '',
+        login: '',
+        name: '',
+        node_id: '',
+        organizations_url: '',
+        public_gists: 0,
+        public_repos: 0,
+        received_events_url: '',
+        repos_url: '',
+        site_admin: false,
+        starred_url: '',
+        subscriptions_url: '',
+        twitter_username: '',
+        type: '',
+        updated_at: '',
+        url: ''
+    });
 
     console.log(userResponse);
 
@@ -31,9 +69,16 @@ const SearchCard = () => {
         event.preventDefault();
 
         const BASE_URL = 'http://localhost:3000/'
-
+        setFinishLoading(false);
+        setIsLoading(true);
         axios(`${BASE_URL}${formData.name}`)
-            .then(response => setUserResponse(response.data));
+            .then(response => setUserResponse(response.data))
+            
+            .finally(()=>{
+                setIsLoading(false);
+                setFinishLoading(true);
+            })
+            
     }
 
     return (
@@ -59,9 +104,9 @@ const SearchCard = () => {
                 </div>
             </div>
             <div>
-                <h1>UserCard</h1>    
+               {isLoading ? <div className="loaders"><ImageLoader/> <ProductInfoLoader/></div> : (null)}
+               {finishLoading ? <UserCard user={userResponse}/> : (null)}
             </div>
-
         </div>
     );
 }
